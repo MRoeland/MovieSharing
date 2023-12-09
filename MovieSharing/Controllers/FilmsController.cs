@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,13 +22,20 @@ namespace MovieSharing.Controllers
         }
 
         // GET: Films
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var movieSharingDBContext = _context.Films.Where(c => c.Deleted == false);
-            return View(await movieSharingDBContext.ToListAsync());
-            /*return _context.Films != null ?
-                        View(await _context.Films.ToListAsync()) :
-                        Problem("Entity set 'MovieSharingDBContext.Film'  is null.");*/
+            ViewData["CurrentFilter"] = searchString;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                var movieSharingDBContext = _context.Films.Where(f => f.Title.Contains(searchString) && f.Deleted == false);
+                return View(await movieSharingDBContext.ToListAsync());
+            }
+            else
+            {
+                var movieSharingDBContext = _context.Films.Where(c => c.Deleted == false);
+                return View(await movieSharingDBContext.ToListAsync());
+            }
         }
 
         // GET: Films/Details/5

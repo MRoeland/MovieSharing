@@ -24,15 +24,28 @@ namespace MovieSharing.Controllers
         }
 
         // GET: Reservaties
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String searchString)
         {
             var userid = User?.FindFirstValue(ClaimTypes.NameIdentifier);
             Lid user = _context.Users.Where(a => a.Id == userid).Single();
 
             if (User.IsInRole("admin"))
             {
-                var movieSharingDBContext = _context.Reservatie.Include(r => r.film).Include(r => r.lid).Where(c => c.Deleted == false);
-                return View(await movieSharingDBContext.ToListAsync());
+                ViewData["CurrentFilter"] = searchString;
+
+                if (!string.IsNullOrEmpty(searchString))
+                {
+                    var movieSharingDBContext = _context.Reservatie.Include(r => r.film)
+                        .Include(r => r.lid)
+                        .Where(r => r.film.Title.Contains(searchString) && r.Deleted == false);
+
+                    return View(await movieSharingDBContext.ToListAsync());
+                }
+                else
+                {
+                    var movieSharingDBContext = _context.Reservatie.Include(r => r.film).Include(r => r.lid).Where(c => c.Deleted == false);
+                    return View(await movieSharingDBContext.ToListAsync());
+                }
             }
             else
             {
