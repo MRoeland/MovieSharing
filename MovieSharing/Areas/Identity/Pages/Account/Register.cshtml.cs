@@ -80,6 +80,11 @@ namespace MovieSharing.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
 
+            [Display(Name = "Name")]
+            public string Voornaam { get; set; }
+            [Display(Name = "Last Name")]
+            public string Achternaam { get; set; }
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -117,6 +122,9 @@ namespace MovieSharing.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                user.Voornaam = Input.Voornaam;
+                user.Achternaam = Input.Achternaam;
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
@@ -137,6 +145,7 @@ namespace MovieSharing.Areas.Identity.Pages.Account
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
+                        await _userManager.AddToRoleAsync(user, "user");
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
                     else

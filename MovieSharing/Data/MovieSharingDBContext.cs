@@ -81,7 +81,9 @@ namespace MovieSharing.Data
                 PasswordHash = hasher.HashPassword(null, "Start123#"),
                 SecurityStamp = Guid.NewGuid().ToString("D"),
                 PhoneNumberConfirmed = true,
-                Deleted = false
+                Deleted = false,
+                Voornaam = "Matthias",
+                Achternaam = "Roeland"
             },
             new Lid
             {
@@ -93,7 +95,9 @@ namespace MovieSharing.Data
                 EmailConfirmed = true,//false,
                 PasswordHash = hasher.HashPassword(null, "Start123#"),
                 SecurityStamp = Guid.NewGuid().ToString("D"),//string.Empty,
-                Deleted = false
+                Deleted = false,
+                Voornaam = "User1",
+                Achternaam = "Test1"
             },
             new Lid
             {
@@ -105,7 +109,9 @@ namespace MovieSharing.Data
                 EmailConfirmed = true,
                 PasswordHash = hasher.HashPassword(null, "Start123#"),
                 SecurityStamp = Guid.NewGuid().ToString("D"),
-                Deleted = false
+                Deleted = false,
+                Voornaam = "User2",
+                Achternaam = "Test2"
             });
         }
         private void SeedUserRoles(ModelBuilder modelBuilder)

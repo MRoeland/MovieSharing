@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieSharing.Data;
 
@@ -11,9 +12,11 @@ using MovieSharing.Data;
 namespace MovieSharing.Migrations
 {
     [DbContext(typeof(MovieSharingDBContext))]
-    partial class MovieSharingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240106182905_extendLid")]
+    partial class extendLid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

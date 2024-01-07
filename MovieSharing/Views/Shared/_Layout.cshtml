@@ -33,6 +33,11 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Reservaties" asp-action="Index">Reservaties</a>
                             </li>
                         }
+                        @if(User.IsInRole("admin")){
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Leden" asp-action="Index">Leden management</a>
+                            </li>
+                        }
                     </ul>
 
                     <partial name="_LoginPartial" />
