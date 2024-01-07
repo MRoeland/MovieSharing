@@ -87,6 +87,20 @@ namespace MovieSharing.Controllers
             return View(model);
         }
 
+        // GET: Leden/Details
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> Details(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+
+        // GET: Leden/Edit
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(string id)
         {
@@ -141,7 +155,7 @@ namespace MovieSharing.Controllers
 
                         if (result.Succeeded)
                         {
-                            if (!model.Roles.Contains("admin"))
+                            if (!User.IsInRole("admin"))
                                 return RedirectToAction("Logout");
 
                             return RedirectToAction("Index");
@@ -179,6 +193,7 @@ namespace MovieSharing.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        // GET: Leden/Delete
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -195,7 +210,7 @@ namespace MovieSharing.Controllers
         }
 
         [HttpPost]
-    [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
