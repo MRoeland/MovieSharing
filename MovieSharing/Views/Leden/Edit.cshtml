@@ -1,6 +1,6 @@
 @model EditUserViewModel
 
-<h1>Edit Lid</h1>
+<h1>@Localizer["EditLid"]</h1>
 
 <form asp-action="Edit" method="post">
     <!-- Add form fields for EditUserViewModel properties -->
@@ -10,33 +10,33 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="UserName"></label>
+        <label asp-for="UserName">@Localizer["Username"]</label>
         <input asp-for="UserName" class="form-control" />
         <span asp-validation-for="UserName" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Email"></label>
+        <label asp-for="Email">@Localizer["Email"]</label>
         <input asp-for="Email" class="form-control" />
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Voornaam"></label>
+        <label asp-for="Voornaam">@Localizer["Voornaam"]</label>
         <input asp-for="Voornaam" class="form-control" />
         <span asp-validation-for="Voornaam" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Achternaam"></label>
+        <label asp-for="Achternaam">@Localizer["Achternaam"]</label>
         <input asp-for="Achternaam" class="form-control" />
         <span asp-validation-for="Achternaam" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Roles"></label>
+        <label asp-for="Roles">@Localizer["Roles"]</label>
         <select asp-for="Roles" asp-items="@(new SelectList(ViewBag.AllRoles))" multiple class="form-control"></select>
     </div>
     
-    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <button type="submit" class="btn btn-primary">@Localizer["Save"]</button>
 </form>

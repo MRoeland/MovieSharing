@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using MovieSharing.Data;
 using VideotheekWebApp.Models;
 
@@ -16,9 +18,13 @@ namespace MovieSharing.Controllers
     {
         private readonly MovieSharingDBContext _context;
 
-        public FilmsController(MovieSharingDBContext context)
+        //private readonly IStringLocalizer<FilmsController> _localizer;
+
+        public FilmsController(MovieSharingDBContext context /*,IStringLocalizer<FilmsController> localizer*/)
         {
             _context = context;
+
+            //_localizer = localizer;
         }
 
         // GET: Films
@@ -68,7 +74,7 @@ namespace MovieSharing.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Regiseur,Acteurs,Genre,Prijs,Deleted,Aantal")] Film film)
+        public async Task<IActionResult> Create([Bind("Id,Title,Regisseur,Acteurs,Genre,Prijs,Deleted,Aantal")] Film film)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +108,7 @@ namespace MovieSharing.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Regiseur,Acteurs,Genre,Prijs,Deleted,Aantal")] Film film)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Regisseur,Acteurs,Genre,Prijs,Aantal")] Film film)
         {
             if (id != film.Id)
             {

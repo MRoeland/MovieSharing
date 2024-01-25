@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using MovieSharing.Data;
 using VideotheekWebApp.Models;
 
@@ -21,11 +22,15 @@ namespace MovieSharing.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<Lid> _signInManager;
 
-        public LedenController(UserManager<Lid> userManager, RoleManager<IdentityRole> roleManager, SignInManager<Lid> signInManager)
+        private readonly IStringLocalizer<LedenController> _localizer;
+
+        public LedenController(UserManager<Lid> userManager, RoleManager<IdentityRole> roleManager, SignInManager<Lid> signInManager, IStringLocalizer<LedenController> localizer)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
+
+            _localizer = localizer;
         }
 
         // GET: Leden

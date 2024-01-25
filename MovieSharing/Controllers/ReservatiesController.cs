@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using MovieSharing.Data;
 using MovieSharing.Models;
 using VideotheekWebApp.Models;
@@ -18,9 +19,13 @@ namespace MovieSharing.Controllers
     {
         private readonly MovieSharingDBContext _context;
 
-        public ReservatiesController(MovieSharingDBContext context)
+        private readonly IStringLocalizer<ReservatiesController> _localizer;
+
+        public ReservatiesController(MovieSharingDBContext context, IStringLocalizer<ReservatiesController> localizer)
         {
             _context = context;
+
+            _localizer = localizer;
         }
 
         // GET: Reservaties

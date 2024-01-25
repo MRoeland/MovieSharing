@@ -218,7 +218,7 @@ namespace MovieSharing.Migrations
                     b.Property<float>("Prijs")
                         .HasColumnType("real");
 
-                    b.Property<string>("Regiseur")
+                    b.Property<string>("Regisseur")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

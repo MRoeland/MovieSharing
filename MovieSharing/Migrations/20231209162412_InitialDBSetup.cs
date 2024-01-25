@@ -60,7 +60,7 @@ namespace MovieSharing.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Regiseur = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Regisseur = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Acteurs = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Genre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Prijs = table.Column<float>(type: "real", nullable: false),
@@ -199,7 +199,7 @@ namespace MovieSharing.Migrations
 
             migrationBuilder.InsertData(
                 table: "Films",
-                columns: new[] { "Id", "Aantal", "Acteurs", "Deleted", "Genre", "Prijs", "Regiseur", "Title" },
+                columns: new[] { "Id", "Aantal", "Acteurs", "Deleted", "Genre", "Prijs", "Regisseur", "Title" },
                 values: new object[,]
                 {
                     { 1, 1, "Tom Cruise", false, "Action", 19.99f, "Tony Scott", "Top Gun" },

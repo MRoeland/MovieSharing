@@ -3,6 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using MovieSharing.Data;
 using Microsoft.AspNetCore.Identity;
 using VideotheekWebApp.Models;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 namespace VideotheekWebApp
 {
@@ -22,6 +25,34 @@ namespace VideotheekWebApp
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+
+
+            builder.Services.AddLocalization(options => options.ResourcesPath = "Localizing");
+
+            builder.Services.AddMvc()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization();
+
+
+            // Configure supported cultures
+            var supportedCultures = new[]
+            {
+                new CultureInfo("en-US"),
+                new CultureInfo("fr-FR"),
+                new CultureInfo("nl-BE")
+                // Add more cultures as needed
+            };
+
+            builder.Services.Configure<RequestLocalizationOptions>(options =>
+            {
+                //options.DefaultRequestCulture = new RequestCulture("en-US");
+                //options.DefaultRequestCulture = new RequestCulture("nl-BE");
+                options.DefaultRequestCulture = new RequestCulture("fr-FR");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -36,6 +67,8 @@ namespace VideotheekWebApp
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            app.UseRequestLocalization();
 
             app.UseRouting();
 

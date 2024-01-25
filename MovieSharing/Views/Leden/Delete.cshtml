@@ -1,6 +1,6 @@
 @model DeleteUserViewModel
 
-<h1>Delete User</h1>
+<h1>@Localizer["FilmCreate"]</h1>
 
 <form asp-action="DeleteConfirmed" method="post">
     <!-- Add form fields for DeleteUserViewModel properties -->
@@ -10,14 +10,14 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="UserName"></label>
+        <label asp-for="UserName">@Localizer["Username"]</label>
         <input asp-for="UserName" class="form-control" readonly />
     </div>
 
     <div class="form-group">
-        <label asp-for="Email"></label>
+        <label asp-for="Email">@Localizer["Email"]</label>
         <input asp-for="Email" class="form-control" readonly />
     </div>
 
-    <button type="submit" class="btn btn-danger">Delete</button>
+    <button type="submit" class="btn btn-danger">@Localizer["Delete"]</button>
 </form>

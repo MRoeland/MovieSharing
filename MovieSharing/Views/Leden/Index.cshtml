@@ -5,20 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Leden Management</h1>
+<h1>@Localizer["IndexLid"]</h1>
 
 @if (User.IsInRole("admin"))
 {
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create">@Localizer["Create"]</a>
     </p>
 }
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
-            Find by username: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-default" /> |
-            <a asp-action="Index">Back to Full List</a>
+            @Localizer["FindUser"]: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value=@Localizer["Search"] class="btn btn-default" /> |
+            <a asp-action="Index">@Localizer["Return"]</a>
         </p>
     </div>
 </form>
@@ -26,12 +26,12 @@
 <table class="table">
     <thead>
         <tr>
-            <th>UserName</th>
-            <th>FirstName</th>
-            <th>LastName</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Roles</th>
+            <th>@Localizer["Username"]</th>
+            <th>@Localizer["Voornaam"]</th>
+            <th>@Localizer["Achternaam"]</th>
+            <th>@Localizer["Email"]</th>
+            <th>@Localizer["PhoneNumber"]</th>
+            <th>@Localizer["Roles"]</th>
             <th></th>
         </tr>
     </thead>
@@ -45,12 +45,12 @@
             <td>@item.PhoneNumber</td>
             <td>@string.Join(", ", await UserManager.GetRolesAsync(item))</td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">@Localizer["Details"]</a>
 
                 @if (User.IsInRole("admin"))
                 {
-                    <a asp-action="Edit" asp-route-id="@item.Id"> | Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id"> | Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id"> | @Localizer["Edit"]</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id"> | @Localizer["Delete"]</a>
                 }
             </td>
         </tr>

@@ -242,7 +242,7 @@ namespace MovieSharing.Migrations
                     b.Property<float>("Prijs")
                         .HasColumnType("real");
 
-                    b.Property<string>("Regiseur")
+                    b.Property<string>("Regisseur")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -263,7 +263,7 @@ namespace MovieSharing.Migrations
                             Deleted = false,
                             Genre = "Action",
                             Prijs = 19.99f,
-                            Regiseur = "Tony Scott",
+                            Regisseur = "Tony Scott",
                             Title = "Top Gun"
                         },
                         new
@@ -274,7 +274,7 @@ namespace MovieSharing.Migrations
                             Deleted = false,
                             Genre = "Action",
                             Prijs = 19.99f,
-                            Regiseur = "Joseph Kosinski",
+                            Regisseur = "Joseph Kosinski",
                             Title = "Maverick"
                         });
                 });

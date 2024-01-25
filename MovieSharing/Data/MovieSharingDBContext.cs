@@ -141,7 +141,7 @@ namespace MovieSharing.Data
             {
                 Id = 1,
                 Title = "Top Gun",
-                Regiseur = "Tony Scott",
+                Regisseur = "Tony Scott",
                 Acteurs = "Tom Cruise",
                 Genre = "Action",
                 Prijs = 19.99F,
@@ -152,7 +152,7 @@ namespace MovieSharing.Data
             {
                 Id = 2,
                 Title = "Maverick",
-                Regiseur = "Joseph Kosinski",
+                Regisseur = "Joseph Kosinski",
                 Acteurs = "Tom Cruise",
                 Genre = "Action",
                 Prijs = 19.99F,

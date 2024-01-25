@@ -5,26 +5,30 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>@Localizer["DetailsReservation"]</h1>
 
 <div>
-    <h4>Reservatie</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.lid)
+            @Localizer["Username"]
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.lid.UserName)
+            @Model.lid.UserName
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.film)
+        <dt class="col-sm-2">
+            @Localizer["Title"]
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.film.Title)
+            @Model.film.Title
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Index">Back to List</a>
+    @if (User.IsInRole("admin"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model?.Id">@Localizer["Edit"] |</a>
+    }
+
+    <a asp-action="Index">@Localizer["Return"]</a>
 </div>

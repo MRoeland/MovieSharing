@@ -5,20 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
-
 @if (User.IsInRole("admin"))
 {
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create">@Localizer["Create"]</a>
     </p>
 }
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
-            Find by title: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-default" /> |
-            <a asp-action="Index">Back to Full List</a>
+            @Localizer["FilterTitle"]: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value=@Localizer["Search"] class="btn btn-default" /> |
+            <a asp-action="Index">@Localizer["Return"]</a>
         </p>
     </div>
 </form>
@@ -27,22 +25,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Localizer["Title"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Regiseur)
+                @Localizer["Director"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Acteurs)
+                @Localizer["Actors"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Genre)
+                @Localizer["Genre"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Prijs)
+                @Localizer["Price"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Aantal)
+                @Localizer["Amount"]
             </th>
             <th></th>
         </tr>
@@ -51,30 +49,30 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @item.Title
+            </td>
+                <td>
+                    @item.Regisseur
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Regiseur)
+                    @item.Acteurs
+            </td>
+                <td>
+                    @item.Genre
+            </td>
+                <td>
+                    @item.Prijs
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Acteurs)
+                    @item.Aantal
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Prijs)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Aantal)
-            </td>
-            <td>
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">@Localizer["Details"]</a>
 
                     @if (User.IsInRole("admin"))
                     {
-                        <a asp-action="Edit" asp-route-id="@item.Id"> | Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id"> | Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id"> | @Localizer["Edit"]</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id"> | @Localizer["Delete"]</a>
                     }
             </td>
         </tr>

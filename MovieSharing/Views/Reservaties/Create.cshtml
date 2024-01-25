@@ -5,32 +5,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<h1>@Localizer["CreateReservatie"]</h1>
 
-<h4>Reservatie</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="lid.UserName" class="control-label"></label>
+                <label asp-for="lid.UserName" class="control-label">@Localizer["Username"]</label>
                 <select asp-for="LidId" class ="form-control" asp-items="ViewBag.LidName"></select>
             </div>
             <div class="form-group">
-                <label asp-for="film.Title" class="control-label"></label>
+                <label asp-for="film.Title" class="control-label">@Localizer["Title"]</label>
                 <select asp-for="FilmId" class ="form-control" asp-items="ViewBag.FilmTitle"></select>
             </div>
             <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value=@Localizer["Create"] class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">@Localizer["Return"]</a>
 </div>
 
 @section Scripts {

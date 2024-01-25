@@ -20,25 +20,30 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Privacy"]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Films" asp-action="Index">Films</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Films" asp-action="Index">@Localizer["Movies"]</a>
                         </li>
                         @if(User.Identity.IsAuthenticated){
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Reservaties" asp-action="Index">Reservaties</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Reservaties" asp-action="Index">@Localizer["Reservaties"]</a>
                             </li>
                         }
                         @if(User.IsInRole("admin")){
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Leden" asp-action="Index">Leden management</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Leden" asp-action="Index">@Localizer["UserManagement"]</a>
                             </li>
                         }
                     </ul>
+
+                    <div class="sidebar">
+                        <!-- Render the language selector -->
+                        @await Component.InvokeAsync("LanguageSelector")
+                    </div>
 
                     <partial name="_LoginPartial" />
                 </div>
@@ -53,7 +58,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - VideotheekWebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - VideotheekWebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Privacy"]</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
