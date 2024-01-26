@@ -1,0 +1,7 @@
+Admin Role:
+User: admin@test.com
+Ww: Start123#
+
+User Role:
+User: user1@test.com
+Ww: Start123#
