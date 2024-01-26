@@ -6,6 +6,7 @@ using VideotheekWebApp.Models;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using Microsoft.OpenApi.Models;
 
 namespace VideotheekWebApp
 {
@@ -53,7 +54,21 @@ namespace VideotheekWebApp
             });
 
 
+            builder.Services.AddControllers();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MovieSharing", Version = "v1" });
+            });
+
+
             var app = builder.Build();
+
+            using (var serviceScope = app.Services.CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<MovieSharingDBContext>();
+                context.Database.Migrate();
+            }
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -61,6 +76,13 @@ namespace VideotheekWebApp
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+            }
+
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication1 v1"));
             }
 
             app.UseHttpsRedirection();
@@ -79,6 +101,12 @@ namespace VideotheekWebApp
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.MapRazorPages();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
             app.Run();
         }
     }

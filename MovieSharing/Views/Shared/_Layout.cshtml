@@ -30,7 +30,7 @@
                         </li>
                         @if(User.Identity.IsAuthenticated){
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Reservaties" asp-action="Index">@Localizer["Reservaties"]</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Reservaties" asp-action="Index">@Localizer["Reservations"]</a>
                             </li>
                         }
                         @if(User.IsInRole("admin")){
